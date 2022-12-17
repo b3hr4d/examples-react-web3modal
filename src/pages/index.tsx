@@ -47,6 +47,8 @@ export default function CustomPage() {
                 "WALLETCONNECT_DEEPLINK_CHOICE",
                 JSON.stringify({ name: "Trust Wallet", href: "trust://" })
               )
+            } else {
+              window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE")
             }
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
           } catch (err: any) {
@@ -90,7 +92,7 @@ export default function CustomPage() {
             name: "Trust Wallet",
             links: {
               native: "trust://",
-              universal: "https://link.trustwallet.com/",
+              universal: "https://link.trustwallet.com",
             },
           },
           {
