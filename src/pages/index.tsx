@@ -92,7 +92,7 @@ export default function CustomPage() {
             name: "Trust Wallet",
             links: {
               native: "trust://",
-              universal: "https://link.trustwallet.com",
+              universal: "trust://",
             },
           },
           {
