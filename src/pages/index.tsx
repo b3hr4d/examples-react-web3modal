@@ -30,7 +30,11 @@ export default function CustomPage() {
   useEffect(() => {
     const handleTrustWallet = () => {
       console.log("handleTrustWallet")
-      if (document.visibilityState === "hidden" && "ontouchend" in document) {
+      if (
+        document.visibilityState === "hidden" &&
+        navigator.userAgent.includes("Mac") &&
+        "ontouchend" in document
+      ) {
         const deepLink = window.localStorage.getItem(
           "WALLETCONNECT_DEEPLINK_CHOICE"
         )
@@ -86,31 +90,7 @@ export default function CustomPage() {
             name: "Trust Wallet",
             links: {
               native: "trust://",
-              universal: "trust://",
-            },
-          },
-          {
-            id: "trust2",
-            name: "Trust Wallet 2",
-            links: {
-              native: "trust://",
-              universal: "https://link.trustwallet.com/",
-            },
-          },
-          {
-            id: "trust3",
-            name: "Trust Wallet 3",
-            links: {
-              native: "https://link.trustwallet.com/",
-              universal: "https://link.trustwallet.com/",
-            },
-          },
-          {
-            id: "trust4",
-            name: "Trust Wallet 4",
-            links: {
-              native: "https://link.trustwallet.com/wc",
-              universal: "https://link.trustwallet.com/wc",
+              universal: "https://metamask.app.link",
             },
           },
           {
@@ -118,7 +98,7 @@ export default function CustomPage() {
             name: "MetaMask",
             links: {
               native: "metamask://",
-              universal: "https://metamask.app.link/wc",
+              universal: "https://metamask.app.link",
             },
           },
         ]}
