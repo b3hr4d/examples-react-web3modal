@@ -28,38 +28,39 @@ export default function CustomPage() {
   }
 
   useEffect(() => {
-    // Load the todos on mount
-    const todosString = localStorage.getItem("todos")
-    if (todosString) {
-      const todos = JSON.parse("WALLETCONNECT_DEEPLINK_CHOICE")
-      console.log(todos)
-    }
-    // Respond to the `storage` event
-    function storageEventHandler(event: StorageEvent) {
-      console.log(event)
-      const deepLink = window.localStorage.getItem(
-        "WALLETCONNECT_DEEPLINK_CHOICE"
-      )
-      if (deepLink) {
-        try {
-          const _deepLink: { name: string; href: string } = JSON.parse(deepLink)
-          if (_deepLink.href === "https://link.trustwallet.com/wc") {
-            window.localStorage.setItem(
-              "WALLETCONNECT_DEEPLINK_CHOICE",
-              JSON.stringify({ name: "Trust Wallet", href: "trust://" })
-            )
+    const handleTrustWallet = () => {
+      console.log("handleTrustWallet")
+      if (
+        document.visibilityState === "hidden" &&
+        navigator.userAgent.includes("Mac") &&
+        "ontouchend" in document
+      ) {
+        const deepLink = window.localStorage.getItem(
+          "WALLETCONNECT_DEEPLINK_CHOICE"
+        )
+        if (deepLink) {
+          try {
+            const _deepLink: { name: string; href: string } =
+              JSON.parse(deepLink)
+            if (_deepLink.href === "https://link.trustwallet.com") {
+              window.localStorage.setItem(
+                "WALLETCONNECT_DEEPLINK_CHOICE",
+                JSON.stringify({ name: "Trust Wallet", href: "trust://" })
+              )
+            }
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          } catch (err: any) {
+            console.log("TrustWallet force redirect err", err)
           }
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        } catch (err: any) {
-          console.log("TrustWallet force redirect err", err)
         }
       }
     }
+
     // Hook up the event handler
-    window.addEventListener("storage", storageEventHandler)
+    document.addEventListener("visibilitychange", handleTrustWallet)
     return () => {
       // Remove the handler when the component unmounts
-      window.removeEventListener("storage", storageEventHandler)
+      document.removeEventListener("visibilitychange", handleTrustWallet)
     }
   }, [])
 
