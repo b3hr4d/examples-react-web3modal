@@ -42,7 +42,7 @@ export default function CustomPage() {
           try {
             const _deepLink: { name: string; href: string } =
               JSON.parse(deepLink)
-            if (_deepLink.href === "https://link.trustwallet.com") {
+            if (_deepLink.href.includes("trust")) {
               window.localStorage.setItem(
                 "WALLETCONNECT_DEEPLINK_CHOICE",
                 JSON.stringify({ name: "Trust Wallet", href: "trust://" })
