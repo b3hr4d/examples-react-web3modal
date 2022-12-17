@@ -90,7 +90,7 @@ export default function CustomPage() {
             name: "Trust Wallet",
             links: {
               native: "trust://",
-              universal: "https://metamask.app.link",
+              universal: "https://link.trustwallet.com/",
             },
           },
           {
@@ -98,7 +98,7 @@ export default function CustomPage() {
             name: "MetaMask",
             links: {
               native: "metamask://",
-              universal: "https://metamask.app.link",
+              universal: "https://metamask.app.link/",
             },
           },
         ]}
