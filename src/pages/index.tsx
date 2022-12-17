@@ -30,11 +30,7 @@ export default function CustomPage() {
   useEffect(() => {
     const handleTrustWallet = () => {
       console.log("handleTrustWallet")
-      if (
-        document.visibilityState === "hidden" &&
-        navigator.userAgent.includes("Mac") &&
-        "ontouchend" in document
-      ) {
+      if (document.visibilityState === "hidden" && "ontouchend" in document) {
         const deepLink = window.localStorage.getItem(
           "WALLETCONNECT_DEEPLINK_CHOICE"
         )
